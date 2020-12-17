@@ -1,0 +1,107 @@
+:root {
+  --speed: 1;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+  margin: 0 calc(50vw - 40px);
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  border-radius: 50%;
+  animation: loading calc(var(--speed) * 1s) ease-in-out infinite;
+  transition: all calc(var(--speed) * 1s) ease-in-out;
+  opacity: 0;
+}
+
+.dot-wrapper {
+  position: absolute;
+  animation: loading-steps calc(var(--speed) * 1s) ease-in-out infinite;
+  transition: all calc(var(--speed) * 1s) ease-in-out;
+}
+
+.dot-wrapper:nth-child(1) > .dot {
+  animation-delay: calc(var(--speed) * 0.25s);
+}
+
+.dot-wrapper:nth-child(2) > .dot {
+  animation-delay: calc(var(--speed) * 0.5s);
+}
+
+.dot-wrapper:nth-child(3) > .dot {
+  animation-delay: calc(var(--speed) * 0.75s);
+}
+
+.dot-wrapper:nth-child(4) > .dot {
+  animation-delay: calc(var(--speed) * 1s);
+}
+
+.dot-wrapper:nth-child(1) {
+  animation-delay: calc(var(--speed) * 0.25s);
+}
+
+.dot-wrapper:nth-child(2) {
+  animation-delay: calc(var(--speed) * 0.5s);
+}
+
+.dot-wrapper:nth-child(3) {
+  animation-delay: calc(var(--speed) * 0.75s);
+}
+
+.dot-wrapper:nth-child(4) {
+  animation-delay: calc(var(--speed) * 1s);
+}
+
+
+@keyframes loading {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  20% {
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes loading-steps {
+  0% {
+    left: 0;
+  }
+  25% {
+    left: 20px;
+  }
+  50% {
+    left: 40px;
+  }
+  75% {
+    left: 60px;
+  }
+  100% {
+    left: 80px;
+  }
+}
