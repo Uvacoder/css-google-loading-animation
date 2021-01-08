@@ -22,14 +22,12 @@ body {
   background-color: black;
   border-radius: 50%;
   animation: loading calc(var(--speed) * 1s) ease-in-out infinite;
-  transition: all calc(var(--speed) * 1s) ease-in-out;
   opacity: 0;
 }
 
 .dot-wrapper {
   position: absolute;
   animation: loading-steps calc(var(--speed) * 1s) ease-in-out infinite;
-  transition: all calc(var(--speed) * 1s) ease-in-out;
 }
 
 .dot-wrapper:nth-child(1) > .dot {
@@ -66,7 +64,7 @@ body {
 
 
 @keyframes loading {
-  0% {
+  0%, 100% {
     transform: scale(0);
     opacity: 0;
   }
@@ -81,10 +79,6 @@ body {
   80% {
     transform: scale(0.5);
     opacity: 0.5;
-  }
-  100% {
-    transform: scale(0);
-    opacity: 0;
   }
 }
 
