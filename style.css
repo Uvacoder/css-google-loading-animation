@@ -1,5 +1,7 @@
 :root {
   --speed: 2;
+  --delay-step: 0.25s;
+  --left-step: 20px;
 }
 
 body {
@@ -30,38 +32,25 @@ body {
   animation: loading-steps calc(var(--speed) * 1s) ease-in-out infinite;
 }
 
+.dot-wrapper:nth-child(1),
 .dot-wrapper:nth-child(1) > .dot {
-  animation-delay: calc(var(--speed) * 0.25s);
+  animation-delay: calc(var(--speed) * calc(var(--delay-step) * 1));
 }
 
+.dot-wrapper:nth-child(2),
 .dot-wrapper:nth-child(2) > .dot {
-  animation-delay: calc(var(--speed) * 0.5s);
+  animation-delay: calc(var(--speed) * calc(var(--delay-step) * 2));
 }
 
+.dot-wrapper:nth-child(3),
 .dot-wrapper:nth-child(3) > .dot {
-  animation-delay: calc(var(--speed) * 0.75s);
+  animation-delay: calc(var(--speed) * calc(var(--delay-step) * 3));
 }
 
+.dot-wrapper:nth-child(4),
 .dot-wrapper:nth-child(4) > .dot {
-  animation-delay: calc(var(--speed) * 1s);
+  animation-delay: calc(var(--speed) * calc(var(--delay-step) * 4));
 }
-
-.dot-wrapper:nth-child(1) {
-  animation-delay: calc(var(--speed) * 0.25s);
-}
-
-.dot-wrapper:nth-child(2) {
-  animation-delay: calc(var(--speed) * 0.5s);
-}
-
-.dot-wrapper:nth-child(3) {
-  animation-delay: calc(var(--speed) * 0.75s);
-}
-
-.dot-wrapper:nth-child(4) {
-  animation-delay: calc(var(--speed) * 1s);
-}
-
 
 @keyframes loading {
   0%, 100% {
@@ -87,15 +76,15 @@ body {
     left: 0;
   }
   25% {
-    left: 20px;
+    left: calc(var(--left-step) * 1);
   }
   50% {
-    left: 40px;
+    left: calc(var(--left-step) * 2);
   }
   75% {
-    left: 60px;
+    left: calc(var(--left-step) * 3);
   }
   100% {
-    left: 80px;
+    left: calc(var(--left-step) * 4);
   }
 }
