@@ -2,6 +2,7 @@
   --speed: 2;
   --delay-step: 0.25s;
   --left-step: 20px;
+  --bg-colour: red;
 }
 
 body {
@@ -21,15 +22,22 @@ body {
 .dot {
   width: 20px;
   height: 20px;
-  background-color: black;
+  background-color: var(--bg-colour);
   border-radius: 50%;
-  animation: loading calc(var(--speed) * 1s) ease-in-out infinite;
   opacity: 0;
+  animation-name: loading;
+  animation-duration: calc(var(--speed) * 1s);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  transition: background-color calc(var(--speed) * 1s) ease-in-out;
 }
 
 .dot-wrapper {
   position: absolute;
-  animation: loading-steps calc(var(--speed) * 1s) ease-in-out infinite;
+  animation-name: loading-steps;
+  animation-duration: calc(var(--speed) * 1s);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
 .dot-wrapper:nth-child(1),
@@ -86,5 +94,20 @@ body {
   }
   100% {
     left: calc(var(--left-step) * 4);
+  }
+}
+
+@keyframes colour-loop {
+  0%, 100% {
+    --bg-colour: red;
+  }
+  20% {
+    --bg-colour: yellow;
+  }
+  50% {
+    --bg-colour: blue;
+  }
+  80% {
+    --bg-colour: purple;
   }
 }
