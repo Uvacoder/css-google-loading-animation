@@ -1,8 +1,18 @@
+* {
+  /* border: 1px solid grey; */
+}
+
 :root {
-  --speed: 2;
+  --speed: 1.5;
   --delay-step: 0.25s;
-  --left-step: 20px;
-  --bg-colour: red;
+  --size: 20px;
+  --total-dots: 4;
+  --left-step: var(--size);
+  --blue: #4285F4; 
+  --red: #DB4437; 
+  --yellow: #F4B400; 
+  --green: #0F9D58; 
+  --bg-colour: var(--blue);
 }
 
 body {
@@ -14,30 +24,96 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   height: 100vh;
   position: relative;
   margin: 0 calc(50vw - 40px);
+  /* border: 1px solid grey; */
 }
 
 .dot {
-  width: 20px;
-  height: 20px;
+  width: var(--size);
+  height: var(--size);
   background-color: var(--bg-colour);
   border-radius: 50%;
   opacity: 0;
-  animation-name: loading;
-  animation-duration: calc(var(--speed) * 1s);
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  transition: background-color calc(var(--speed) * 1s) ease-in-out;
+  animation-name: loading, colour-loop;
+  animation-duration: calc(var(--speed) * 1s), calc(var(--speed) * 8s);
+  animation-timing-function: ease-in-out, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+  animation-fill-mode: both, both;
+  background-blend-mode: screen;
+  margin: 0;
+}
+
+.container {
+  position: relative;
+  width: calc(var(--total-dots) * var(--size));
+  height: auto;
 }
 
 .dot-wrapper {
   position: absolute;
+  left: calc(var(--left-step) * -1 + var(--size)/2);
   animation-name: loading-steps;
   animation-duration: calc(var(--speed) * 1s);
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
+  animation-delay: calc(var(--speed) * calc(var(--delay-step) * -2));
+  margin: 0;
+  /* background-color: #99999999; */
+}
+
+@keyframes loading {
+  0%, 100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  25% {
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+}
+
+@keyframes loading-steps {
+  0% {
+    left: calc(var(--left-step) * -1 + var(--size)/2);
+  }
+  25% {
+    left: calc(var(--left-step) * 0 + var(--size)/2);
+  }
+  50% {
+    left: calc(var(--left-step) * 1 + var(--size)/2);
+  }
+  75% {
+    left: calc(var(--left-step) * 2 + var(--size)/2);
+  }
+  100% {
+    left: calc(var(--left-step) * 3 + var(--size)/2);
+  }
+}
+
+@keyframes colour-loop {
+  0%, 100% {
+    --bg-colour: var(--blue);
+  }
+  25% {
+    --bg-colour: var(--red);
+  }
+  50% {
+    --bg-colour: var(--yellow);
+  }
+  75% {
+    --bg-colour: var(--green);
+  }
 }
 
 .dot-wrapper:nth-child(1),
@@ -60,54 +136,34 @@ body {
   animation-delay: calc(var(--speed) * calc(var(--delay-step) * 4));
 }
 
-@keyframes loading {
-  0%, 100% {
-    transform: scale(0);
-    opacity: 0;
-  }
-  20% {
-    transform: scale(0.5);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  80% {
-    transform: scale(0.5);
-    opacity: 0.5;
-  }
+#google-logo {
+  --logo-size: 52px;
+  display: block;
+  content: ' ';
+  background-image: url('google-logo.svg');
+  background-size: var(--logo-size) var(--logo-size);
+  height: var(--logo-size);
+  width: var(--logo-size);
+  margin-top: 50px;
+  animation: fadeInAnimation ease-in 1.5s;
+  animation-iteration-count: 1; 
+  animation-fill-mode: forwards; 
 }
 
-@keyframes loading-steps {
-  0% {
-    left: 0;
-  }
-  25% {
-    left: calc(var(--left-step) * 1);
-  }
-  50% {
-    left: calc(var(--left-step) * 2);
-  }
-  75% {
-    left: calc(var(--left-step) * 3);
-  }
-  100% {
-    left: calc(var(--left-step) * 4);
-  }
-}
+@keyframes fadeInAnimation { 
+  0% { 
+    opacity: 0; 
+  } 
+  100% { 
+    opacity: 1; 
+  } 
+} 
 
-@keyframes colour-loop {
-  0%, 100% {
-    --bg-colour: red;
-  }
-  20% {
-    --bg-colour: yellow;
-  }
-  50% {
-    --bg-colour: blue;
-  }
-  80% {
-    --bg-colour: purple;
-  }
+.line {
+  height: 300px;
+  width: 1px;
+  background-color: red;
+  position: absolute;
+  left: 50%;
+  display: none;
 }
